@@ -1,0 +1,314 @@
+#app-container {
+    min-height: 100vh; 
+    padding: 50px 20px; 
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4); 
+
+    font-family: 'Poppins', sans-serif; 
+    display: flex; 
+    flex-direction: column;   
+}
+#app-title {
+    font-size: 2.8rem;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff; 
+    position: relative;
+    margin-bottom: 30px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.169);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: bounceIn 1s ease-out;
+    transition: all 0.3s ease;
+}
+#questions-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto); 
+    grid-template-rows: repeat(3, max-content);  
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; 
+    margin: 0 auto; 
+    font-size:12px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4); /* Dégradé qui couvre tout */
+    background-attachment: fixed; /* Fixe le fond pour éviter qu'il défile */
+    background-size: cover; /* Étend le fond pour couvrir tout */
+}
+#score-container {
+    position: fixed; 
+    right: 40px; 
+    top: 40px; 
+    font-size: 19px; 
+    font-weight: bold; 
+    color: #fff; 
+    background: linear-gradient(120deg, #a18cd1, #fbc2eb); 
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+
+}
+
+.question {
+    background: #fff; 
+    padding: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.question:hover {
+    transform: translateY(-5px);
+    background-color: #f8f9fa;
+}
+
+.answers {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    justify-content: center;
+}
+
+.answer {
+    background: linear-gradient(120deg, #f6d365, #fda085); 
+    color: #fff;
+    border: none;
+    border-radius: 10px; 
+    padding: 12px 18px;
+    font-size: 16px; 
+    font-weight: bold;
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.answer:hover {
+    background: linear-gradient(120deg, #f093fb, #f5576c);
+    transform: scale(1.1);
+}
+.correct-answer {
+    
+    color: white;
+    font-weight: bold;
+    border: 2px solid #4caf50; 
+ }
+.incorrect-answer {
+  
+    color: white;
+    font-weight: bold;
+    border: 2px solid #f44336; 
+}
+.disabled .answer {
+    cursor: not-allowed; 
+    opacity: 0.7;
+    background: #ddd;
+    color: #666;
+}
+.correct-feedback {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    animation: fadeIn 0.5s ease;
+}
+.incorrect-feedback {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+@media (max-width: 768px) {
+    #score-container {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+
+    .question h2 {
+        font-size: 18px;
+    }
+
+    .answer {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
+@media (max-width: 480px) {
+    #score-container {
+        right: 20px; 
+        top: 20px;
+    }
+
+    .answer {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+}
+
+#feedback-message {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#feedback-message.red {
+    color: red;
+}
+#feedback-message.orange {
+    color: orange;
+}
+#feedback-message.green {
+    color: green;
+}
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  } 
+.custom-alert-content {
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4); 
+    border-radius: 30px;
+    padding: 20px;
+    text-align: center;
+    width: 70%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+  }
+.custom-alert h2 {
+    font-size: 20px;
+    font-family: Georgia, serif;
+    color: #333;
+    margin-bottom: 20px;
+  }
+.alert-buttons {
+    display: flex;
+    justify-content: space-around;
+  } 
+.alert-buttons button {
+    background-color: #0d6efd;
+    color: #fff;
+    font-size: 18px;
+    font-family: Georgia, serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  } 
+.alert-buttons button:hover {
+    background: linear-gradient(120deg, #f093fb, #f5576c);
+  } 
+.alert-buttons button:active {
+    transform: scale(0.98);
+  }
+.custom-alert.show {
+    display: flex; /* Afficher la modale */
+    animation: fadeIn 0.3s ease-in-out;
+
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .final-congratulations {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .final-congratulations h1 {
+    margin-bottom: 60px;
+    font-size: 3rem;
+    color: #4CAF50;
+    font-family: cursive;
+  }
+  
+  .final-congratulations p {
+    font-size: 1.5rem;
+    color: #333;
+    font-family: serif;
+  }
+  
+  .final-congratulations button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+    font-family: serif;
+  }
+  .final-congratulations button:hover{
+    background: linear-gradient(120deg, #f093fb, #f5576c);
+}
+  
